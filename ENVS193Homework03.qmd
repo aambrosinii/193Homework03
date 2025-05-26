@@ -99,4 +99,6 @@ c.
 
 
 Problem 3:
+a. In "Assessment of the environmental sustainability of restaurants in the U.S.: The effects of restaurant characteristics on environmental sustainability performance", both a t-test and ANOVA were used in order to address the main research question.
 
+![Screenshot of my table](images/table.png)
