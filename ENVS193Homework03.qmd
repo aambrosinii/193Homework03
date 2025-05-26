@@ -101,4 +101,6 @@ c.
 Problem 3:
 a. In "Assessment of the environmental sustainability of restaurants in the U.S.: The effects of restaurant characteristics on environmental sustainability performance", both a t-test and ANOVA were used in order to address the main research question.
 
-![Screenshot of my table](images/table.png)
+![Table used](images/table.png)
+
+b. This table demonstrates the results of t-tests clearly by showing group means, standard deviations, and t-values across independent and chain restaurants. However, the visual design does not show which differences are statistically significant, and there is no representation of ANOVA results. Improving the format with alternating colors and explicitly labeling which test was used for each comparison would enhance the appearance and understanding of the table.
