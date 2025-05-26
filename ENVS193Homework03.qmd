@@ -18,9 +18,9 @@ library(readxl)
 
 Problem 1:
 
-a\. I could calculate the mean wait time in seconds for weekdays and non-weekdays to compare whether wait times tend to be longer during the week. This is informative because weekdays tend to have more routine activity such as school or work, which might lead to longer lines compared to weekends.
+a. I could calculate the mean wait time in seconds for weekdays and non-weekdays to compare whether wait times tend to be longer during the week. This is informative because weekdays tend to have more routine activity such as school or work, which might lead to longer lines compared to weekends.
 
-b\.
+b.
 
 ```{r}
 
@@ -66,7 +66,7 @@ d.
 
 ```{r}
 
-# Create summary table
+# Creating summary table
 summary_data <- data %>%
   group_by(day_type) %>%
   summarize(
@@ -84,8 +84,19 @@ summary_data %>%
     day_type = "Day Type"
   ) %>%
   fmt_number(
-    columns = vars(`Mean Wait Duration (seconds)`),
+    columns = c(`Mean Wait Duration (seconds)`),
     decimals = 1
   )
 
 ```
+
+Problem 2:
+a. For my personal data, an affective visualization would evoke a "stress" response for longer wait times observed at the coffee shop, representing its impact on daily experience. For example, utilizing a gradient between red and green could demonstrate lengthier wait times throughout my data points. Diary-style annotations may help the viewer to understand and convey the emotions behind the numbers.
+
+b.
+
+c. 
+
+
+Problem 3:
+

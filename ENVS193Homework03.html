@@ -135,8 +135,10 @@ The following objects are masked from 'package:stats':
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Problem 1:</p>
-<p>a. I could calculate the mean wait time in seconds for weekdays and non-weekdays to compare whether wait times tend to be longer during the week. This is informative because weekdays tend to have more routine activity such as school or work, which might lead to longer lines compared to weekends.</p>
-<p>b.</p>
+<ol type="a">
+<li><p>I could calculate the mean wait time in seconds for weekdays and non-weekdays to compare whether wait times tend to be longer during the week. This is informative because weekdays tend to have more routine activity such as school or work, which might lead to longer lines compared to weekends.</p></li>
+<li></li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and clean the data</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"envs 193DS data - Sheet1.csv"</span>)) <span class="sc">%&gt;%</span></span>
@@ -203,7 +205,7 @@ time (1): Start Time
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary table</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating summary table</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(day_type) <span class="sc">%&gt;%</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
@@ -221,31 +223,27 @@ time (1): Start Time
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">day_type =</span> <span class="st">"Day Type"</span></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">vars</span>(<span class="st">`</span><span class="at">Mean Wait Duration (seconds)</span><span class="st">`</span>),</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">Mean Wait Duration (seconds)</span><span class="st">`</span>),</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Since gt v0.3.0, `columns = vars(...)` has been deprecated.
-• Please use `columns = c(...)` instead.</code></pre>
-</div>
 <div class="cell-output-display">
-<div id="qlhvmhdfcm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qlhvmhdfcm table {
+<div id="wxqhjmkskd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wxqhjmkskd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qlhvmhdfcm thead, #qlhvmhdfcm tbody, #qlhvmhdfcm tfoot, #qlhvmhdfcm tr, #qlhvmhdfcm td, #qlhvmhdfcm th {
+#wxqhjmkskd thead, #wxqhjmkskd tbody, #wxqhjmkskd tfoot, #wxqhjmkskd tr, #wxqhjmkskd td, #wxqhjmkskd th {
   border-style: none;
 }
 
-#qlhvmhdfcm p {
+#wxqhjmkskd p {
   margin: 0;
   padding: 0;
 }
 
-#qlhvmhdfcm .gt_table {
+#wxqhjmkskd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -271,12 +269,12 @@ time (1): Start Time
   border-left-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_caption {
+#wxqhjmkskd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qlhvmhdfcm .gt_title {
+#wxqhjmkskd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -288,7 +286,7 @@ time (1): Start Time
   border-bottom-width: 0;
 }
 
-#qlhvmhdfcm .gt_subtitle {
+#wxqhjmkskd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -300,7 +298,7 @@ time (1): Start Time
   border-top-width: 0;
 }
 
-#qlhvmhdfcm .gt_heading {
+#wxqhjmkskd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -312,13 +310,13 @@ time (1): Start Time
   border-right-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_bottom_border {
+#wxqhjmkskd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_col_headings {
+#wxqhjmkskd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -333,7 +331,7 @@ time (1): Start Time
   border-right-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_col_heading {
+#wxqhjmkskd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -353,7 +351,7 @@ time (1): Start Time
   overflow-x: hidden;
 }
 
-#qlhvmhdfcm .gt_column_spanner_outer {
+#wxqhjmkskd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -365,15 +363,15 @@ time (1): Start Time
   padding-right: 4px;
 }
 
-#qlhvmhdfcm .gt_column_spanner_outer:first-child {
+#wxqhjmkskd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qlhvmhdfcm .gt_column_spanner_outer:last-child {
+#wxqhjmkskd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qlhvmhdfcm .gt_column_spanner {
+#wxqhjmkskd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -385,11 +383,11 @@ time (1): Start Time
   width: 100%;
 }
 
-#qlhvmhdfcm .gt_spanner_row {
+#wxqhjmkskd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qlhvmhdfcm .gt_group_heading {
+#wxqhjmkskd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -415,7 +413,7 @@ time (1): Start Time
   text-align: left;
 }
 
-#qlhvmhdfcm .gt_empty_group_heading {
+#wxqhjmkskd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -430,15 +428,15 @@ time (1): Start Time
   vertical-align: middle;
 }
 
-#qlhvmhdfcm .gt_from_md > :first-child {
+#wxqhjmkskd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qlhvmhdfcm .gt_from_md > :last-child {
+#wxqhjmkskd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qlhvmhdfcm .gt_row {
+#wxqhjmkskd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -457,7 +455,7 @@ time (1): Start Time
   overflow-x: hidden;
 }
 
-#qlhvmhdfcm .gt_stub {
+#wxqhjmkskd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -470,7 +468,7 @@ time (1): Start Time
   padding-right: 5px;
 }
 
-#qlhvmhdfcm .gt_stub_row_group {
+#wxqhjmkskd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -484,15 +482,15 @@ time (1): Start Time
   vertical-align: top;
 }
 
-#qlhvmhdfcm .gt_row_group_first td {
+#wxqhjmkskd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qlhvmhdfcm .gt_row_group_first th {
+#wxqhjmkskd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qlhvmhdfcm .gt_summary_row {
+#wxqhjmkskd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -502,16 +500,16 @@ time (1): Start Time
   padding-right: 5px;
 }
 
-#qlhvmhdfcm .gt_first_summary_row {
+#wxqhjmkskd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_first_summary_row.thick {
+#wxqhjmkskd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qlhvmhdfcm .gt_last_summary_row {
+#wxqhjmkskd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -521,7 +519,7 @@ time (1): Start Time
   border-bottom-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_grand_summary_row {
+#wxqhjmkskd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -531,7 +529,7 @@ time (1): Start Time
   padding-right: 5px;
 }
 
-#qlhvmhdfcm .gt_first_grand_summary_row {
+#wxqhjmkskd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -541,7 +539,7 @@ time (1): Start Time
   border-top-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_last_grand_summary_row_top {
+#wxqhjmkskd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -551,11 +549,11 @@ time (1): Start Time
   border-bottom-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_striped {
+#wxqhjmkskd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qlhvmhdfcm .gt_table_body {
+#wxqhjmkskd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -564,7 +562,7 @@ time (1): Start Time
   border-bottom-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_footnotes {
+#wxqhjmkskd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -578,7 +576,7 @@ time (1): Start Time
   border-right-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_footnote {
+#wxqhjmkskd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -587,7 +585,7 @@ time (1): Start Time
   padding-right: 5px;
 }
 
-#qlhvmhdfcm .gt_sourcenotes {
+#wxqhjmkskd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -601,7 +599,7 @@ time (1): Start Time
   border-right-color: #D3D3D3;
 }
 
-#qlhvmhdfcm .gt_sourcenote {
+#wxqhjmkskd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -609,72 +607,72 @@ time (1): Start Time
   padding-right: 5px;
 }
 
-#qlhvmhdfcm .gt_left {
+#wxqhjmkskd .gt_left {
   text-align: left;
 }
 
-#qlhvmhdfcm .gt_center {
+#wxqhjmkskd .gt_center {
   text-align: center;
 }
 
-#qlhvmhdfcm .gt_right {
+#wxqhjmkskd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qlhvmhdfcm .gt_font_normal {
+#wxqhjmkskd .gt_font_normal {
   font-weight: normal;
 }
 
-#qlhvmhdfcm .gt_font_bold {
+#wxqhjmkskd .gt_font_bold {
   font-weight: bold;
 }
 
-#qlhvmhdfcm .gt_font_italic {
+#wxqhjmkskd .gt_font_italic {
   font-style: italic;
 }
 
-#qlhvmhdfcm .gt_super {
+#wxqhjmkskd .gt_super {
   font-size: 65%;
 }
 
-#qlhvmhdfcm .gt_footnote_marks {
+#wxqhjmkskd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qlhvmhdfcm .gt_asterisk {
+#wxqhjmkskd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qlhvmhdfcm .gt_indent_1 {
+#wxqhjmkskd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qlhvmhdfcm .gt_indent_2 {
+#wxqhjmkskd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qlhvmhdfcm .gt_indent_3 {
+#wxqhjmkskd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qlhvmhdfcm .gt_indent_4 {
+#wxqhjmkskd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qlhvmhdfcm .gt_indent_5 {
+#wxqhjmkskd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qlhvmhdfcm .katex-display {
+#wxqhjmkskd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qlhvmhdfcm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wxqhjmkskd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -704,6 +702,12 @@ time (1): Start Time
 </div>
 </div>
 </div>
+<p>Problem 2: a. For my personal data, an affective visualization would evoke a “stress” response for longer wait times observed at the coffee shop, representing its impact on daily experience. For example, utilizing a gradient between red and green could demonstrate lengthier wait times throughout my data points. Diary-style annotations may help the viewer to understand and convey the emotions behind the numbers.</p>
+<ol start="2" type="a">
+<li></li>
+<li></li>
+</ol>
+<p>Problem 3:</p>
 
 </main>
 <!-- /main column -->
