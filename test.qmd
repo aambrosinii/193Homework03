@@ -1,0 +1,22 @@
+---
+title: "ENVSHomework03"
+author: "Alyssa Ambrosini"
+format: html
+editor: visual
+GitHub Repository: https://github.com/aambrosinii/193Homework03.git
+---
+
+```{r}
+# Load required packages
+library(tidyverse)
+library(here)   
+library(gt)        
+library(janitor)  
+library(readxl)   
+
+```
+
+```{r}
+#| echo: false
+2 * 2
+```
