@@ -104,3 +104,6 @@ a. In "Assessment of the environmental sustainability of restaurants in the U.S.
 ![Table used](images/table.png)
 
 b. This table demonstrates the results of t-tests clearly by showing group means, standard deviations, and t-values across independent and chain restaurants. However, the visual design does not show which differences are statistically significant, and there is no representation of ANOVA results. Improving the format with alternating colors and explicitly labeling which test was used for each comparison would enhance the appearance and understanding of the table.
+
+c. Authors handled visual clutter by using a clean grid-style layout. However, they only used minimal bolding, and did not include it in the numbered column, which were not part of the results. This made results harder to interpret.
+
