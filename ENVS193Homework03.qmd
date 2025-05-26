@@ -58,6 +58,34 @@ ggplot(data, aes(x = day_type, y = duration_s, color = day_type)) +
   theme(legend.position = "top")
 ```
 
-c\.
+c.  
 
 Figure 1: Each point represents an individual observation of wait duration (in seconds), with black diamonds indicating the mean wait time for each group. The data shows that weekdays tend to variable and generally longer wait durations compared to non-weekdays. Based on summary statistics, mean wait time on weekdays was calculated at 110.0 seconds, while on non-weekdays it was 69.4 seconds.
+
+d.  
+
+```{r}
+
+# Create summary table
+summary_data <- data %>%
+  group_by(day_type) %>%
+  summarize(
+    `Mean Wait Duration (seconds)` = round(mean(duration_s, na.rm = TRUE), 1),
+    .groups = "drop"
+  )
+
+# Display table using gt
+summary_data %>%
+  gt() %>%
+  tab_header(
+    title = "Mean Line Wait Time on Weekdays vs. Weekends"
+  ) %>%
+  cols_label(
+    day_type = "Day Type"
+  ) %>%
+  fmt_number(
+    columns = vars(`Mean Wait Duration (seconds)`),
+    decimals = 1
+  )
+
+```
