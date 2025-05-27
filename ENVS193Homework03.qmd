@@ -18,9 +18,9 @@ library(readxl)
 
 Problem 1:
 
-a. I could calculate the mean wait time in seconds for weekdays and non-weekdays to compare whether wait times tend to be longer during the week. This is informative because weekdays tend to have more routine activity such as school or work, which might lead to longer lines compared to weekends.
+a.  I could calculate the mean wait time in seconds for weekdays and non-weekdays to compare whether wait times tend to be longer during the week. This is informative because weekdays tend to have more routine activity such as school or work, which might lead to longer lines compared to weekends.
 
-b.
+b.  
 
 ```{r}
 
@@ -90,21 +90,75 @@ summary_data %>%
 
 ```
 
-Problem 2:
-a. For my personal data, an affective visualization would evoke a "stress" response for longer wait times observed at the coffee shop, representing its impact on daily experience. For example, utilizing a gradient between red and green could demonstrate lengthier wait times throughout my data points. Diary-style annotations may help the viewer to understand and convey the emotions behind the numbers.
+Problem 2: a. For my personal data, an affective visualization would evoke a "stress" response for longer wait times observed at the coffee shop, representing its impact on daily experience. For example, utilizing a gradient between red and green could demonstrate lengthier wait times throughout my data points. Diary-style annotations may help the viewer to understand and convey the emotions behind the numbers.
 
-b.
+b.  
 
-c. 
+    ```{r}
 
+    # Load and clean the data
+    data <- read_csv(here("data", "envs 193DS data - Sheet1.csv")) %>%
+      clean_names()
 
-Problem 3:
-a. In "Assessment of the environmental sustainability of restaurants in the U.S.: The effects of restaurant characteristics on environmental sustainability performance", both a t-test and ANOVA were used in order to address the main research question.
+    # Convert 'week_day_y_n' to a factor with readable labels
+    data <- data %>%
+      mutate(
+        day_type = if_else(week_day_y_n == "Y", "Weekday", "Non-Weekday"),
+        day_type = factor(day_type, levels = c("Weekday", "Non-Weekday"))
+      )
+
+    # Summarize mean duration by day type
+    summary_data <- data %>%
+      group_by(day_type) %>%
+      summarize(mean_duration = mean(duration_s, na.rm = TRUE), .groups = "drop")
+
+    # Create fake gradient with layered rects
+    n_steps <- 100
+    y_max <- max(data$duration_s, na.rm = TRUE)
+    y_min <- min(data$duration_s, na.rm = TRUE)
+    y_breaks <- seq(y_min, y_max, length.out = n_steps + 1)
+
+    gradient_data <- tibble(
+      ymin = head(y_breaks, -1),
+      ymax = tail(y_breaks, -1),
+      fill = colorRampPalette(c("red", "green"))(n_steps)
+    )
+
+    # Plot with transparent gradient
+    ggplot() +
+      geom_rect(data = gradient_data,
+                aes(xmin = -Inf, xmax = Inf, ymin = ymin, ymax = ymax, fill = fill),
+                color = NA,
+                alpha = 0.3) +  # Add transparency here
+      scale_fill_identity() +
+      geom_jitter(data = data,
+                  aes(x = day_type, y = duration_s, color = day_type),
+                  width = 0.2, alpha = 0.6, size = 2) +
+      geom_point(data = summary_data,
+                 aes(x = day_type, y = mean_duration),
+                 color = "black", size = 4, shape = 18) +
+      scale_color_manual(values = c("seagreen3", "tomato2")) +
+      labs(
+        title = "Mean Line Wait on Weekdays vs. Weekends",
+        x = "Day Type",
+        y = "Wait Duration (seconds)",
+        color = "Day Type"
+      ) +
+      theme_minimal(base_size = 14) +
+      theme(
+        legend.position = "top",
+        panel.background = element_blank(),
+        plot.background = element_blank()
+      )
+
+    ```
+
+Problem 3: a. In "Assessment of the environmental sustainability of restaurants in the U.S.: The effects of restaurant characteristics on environmental sustainability performance", both a t-test and ANOVA were used in order to address the main research question.
 
 ![Table used](images/table.png)
 
-b. This table demonstrates the results of t-tests clearly by showing group means, standard deviations, and t-values across independent and chain restaurants. However, the visual design does not show which differences are statistically significant, and there is no representation of ANOVA results. Improving the format with alternating colors and explicitly labeling which test was used for each comparison would enhance the appearance and understanding of the table.
+b.  This table demonstrates the results of t-tests clearly by showing group means, standard deviations, and t-values across independent and chain restaurants. However, the visual design does not show which differences are statistically significant, and there is no representation of ANOVA results. Improving the format with alternating colors and explicitly labeling which test was used for each comparison would enhance the appearance and understanding of the table.
 
 c Authors handled visual clutter by using a clean grid-style layout. However, they only used minimal bolding, and did not include it in the numbered column, which were not part of the results. This made results harder to interpret.
 
-d. In improving this table, I would first bold the number column in order to provide visual clarity and separate these numbers from the statistical results. Adding alternate row shading would also aid in the differentiation between column categories and data, as the bold font is light. Colors can also be used to further represent sustainability strategies, with darker shading being used to show greater extents of implementation in addition to numbering them 1-5. With 5 being darkest and 1 being lightest, it is much easier for the viewer to understand what this table is communicating about environmental sustainability strategies as they interpret the statistical results.
+d.  In improving this table, I would first bold the number column in order to provide visual clarity and separate these numbers from the statistical results. Adding alternate row shading would also aid in the differentiation between column categories and data, as the bold font is light. Colors can also be used to further represent sustainability strategies, with darker shading being used to show greater extents of implementation in addition to numbering them 1-5. With 5 being darkest and 1 being lightest, it is much easier for the viewer to understand what this table is communicating about environmental sustainability strategies as they interpret the statistical results.
